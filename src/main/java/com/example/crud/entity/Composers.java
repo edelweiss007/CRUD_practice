@@ -40,8 +40,8 @@ public class Composers {
     @Column(nullable = false)
     private LocalDateTime updated;
 
+    //Entity -> DTO 변환
     public CrudResponseDto toDto(Composers composers) {
-
         return CrudResponseDto.builder()
                 .id(composers.getId())
                 .composer(composers.getComposer())
@@ -53,6 +53,7 @@ public class Composers {
                 .build();
     }
 
+    //작곡가 수정 시 DTO -> Entity 변환
     public void update(CrudRequestDto requestDto) {
         this.composer = requestDto.getComposer();
         this.content = requestDto.getContent();

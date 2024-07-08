@@ -30,7 +30,7 @@ public class CrudResponseDto {
 
 
     //Entity -> DTO
-    public static CrudResponseDto of(Composers crud) {
+    public static CrudResponseDto toDto(Composers crud) {
 
         return CrudResponseDto.builder()
                 .id(crud.getId())
