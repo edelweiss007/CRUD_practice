@@ -47,13 +47,21 @@ public class CrudService {
     }
 
     //작곡가 조회
-    public List<CrudResponseDto> getComposer(String composer) {
+    public List<CrudResponseDto> getComposer(String composer) throws Exception {
 
         List<Composers> foundByComposer = crudRepository.findByComposer(composer);
 
         List<CrudResponseDto> responseDto = foundByComposer.stream().map(CrudResponseDto::toDto).collect(Collectors.toUnmodifiableList());
 
-        return responseDto;
+        if(responseDto.isEmpty()) {
+
+            throw new Exception();
+
+        } else {
+
+            return responseDto;
+        }
+
     }
 
     //작곡가 수정

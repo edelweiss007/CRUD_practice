@@ -1,5 +1,6 @@
 package com.example.crud.Controller;
 
+import com.example.crud.ResponseData;
 import com.example.crud.Service.CrudService;
 import com.example.crud.dto.CrudRequestDto;
 import com.example.crud.dto.CrudResponseDto;
@@ -23,47 +24,79 @@ public class CrudController {
 
     //전체 작곡가 리스트 조회
     @GetMapping("/composers")
-    public ResponseEntity getComposers() {
+    public ResponseEntity<ResponseData> getComposers() {
+
+        ResponseData responseData = new ResponseData();
 
         try {
             List<CrudResponseDto> composersList = crudService.getComposers();
 
-            return ResponseEntity.status(HttpStatus.OK).body(composersList);
+            responseData.setCode(200);
+            responseData.setMessage("요청에 성공하였습니다.");
+            responseData.setDataList(composersList);
+
+            return new ResponseEntity<>(responseData, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
+            responseData.setCode(400);
+            responseData.setMessage("잘못된 요청입니다.");
+            responseData.setDataList(null);
+
+            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 등록
     @PostMapping("/composers")
-    public ResponseEntity createComposer(@RequestBody CrudRequestDto requestDto) {
+    public ResponseEntity<ResponseData> createComposer(@RequestBody CrudRequestDto requestDto) {
+
+        ResponseData responseData = new ResponseData();
 
         try {
-            CrudResponseDto CreatedComposer = crudService.createComposer(requestDto);
+            CrudResponseDto createdComposer = crudService.createComposer(requestDto);
 
-            return ResponseEntity.status(HttpStatus.OK).body(CreatedComposer);
+            responseData.setCode(200);
+            responseData.setMessage("작곡가 등록에 성공하였습니다.");
+            responseData.setData(createdComposer);
+
+            return new ResponseEntity<>(responseData, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
+            responseData.setCode(400);
+            responseData.setMessage("잘못된 요청입니다.");
+            responseData.setData(null);
+            e.getMessage();
+
+            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 조회
     @GetMapping("/composers/{composer}")
-    public ResponseEntity getComposer(@PathVariable String composer) {
+    public ResponseEntity<ResponseData> getComposer(@PathVariable String composer) {
+
+        ResponseData responseData = new ResponseData();
 
         try {
             List<CrudResponseDto> selectedComposer = crudService.getComposer(composer);
 
-            return ResponseEntity.status(HttpStatus.OK).body(selectedComposer);
+            responseData.setCode(200);
+            responseData.setMessage("작곡가 조회에 성공하였습니다.");
+            responseData.setDataList(selectedComposer);
+
+            return new ResponseEntity<>(responseData, HttpStatus.OK);
+
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
+            responseData.setCode(400);
+            responseData.setMessage("잘못된 요청입니다.");
+            responseData.setDataList(null);
+
+            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -100,3 +133,4 @@ public class CrudController {
 
     }
 }
+
