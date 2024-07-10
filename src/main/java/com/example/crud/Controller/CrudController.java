@@ -68,7 +68,6 @@ public class CrudController {
             responseData.setCode(400);
             responseData.setMessage("잘못된 요청입니다.");
             responseData.setData(null);
-            e.getMessage();
 
             return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
@@ -103,32 +102,50 @@ public class CrudController {
 
     //작곡가 수정
     @PutMapping("/composers/{composer}")
-    public ResponseEntity updateComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) {
+    public ResponseEntity<ResponseData> updateComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) throws Exception {
+
+        ResponseData responseData = new ResponseData();
 
         try {
             CrudResponseDto updatedComposer = crudService.updateComposer(composer, requestDto);
 
-            return ResponseEntity.status(HttpStatus.OK).body(updatedComposer);
+            responseData.setCode(200);
+            responseData.setMessage("작곡가 수정에 성공하였습니다.");
+            responseData.setData(updatedComposer);
+
+            return new ResponseEntity<>(responseData, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("일치하지 않는 비밀번호입니다.");
+            responseData.setCode(400);
+            responseData.setMessage("알치하지 않는 비밀번호 입니다.");
+            responseData.setData(null);
+
+            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 삭제
     @DeleteMapping("/composers/{composer}")
-    public ResponseEntity deleteComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) {
+    public ResponseEntity<ResponseData> deleteComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) {
+
+        ResponseData responseData = new ResponseData();
 
         try {
             crudService.deleteComposer(composer, requestDto);
 
-            return ResponseEntity.status(HttpStatus.OK).body("deleted successfully");
+            responseData.setCode(200);
+            responseData.setMessage("작곡가 삭제에 성공하였습니다.");
+
+            return new ResponseEntity<>(responseData, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("비밀번호가 일치하지 않습니다.");
+            responseData.setCode(400);
+            responseData.setMessage("일치하지 않는 비밀번호입니다.");
+
+            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
 
     }

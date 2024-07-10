@@ -99,5 +99,7 @@ public class CrudService {
         if (!(requestDto.getPassword().equals(responseDto.get(0).getPassword()))) {
             throw new Exception();
         }
+
+        crudRepository.deleteById(responseDto.get(0).getId());
     }
 }
