@@ -1,6 +1,6 @@
 package com.example.crud.Controller;
 
-import com.example.crud.ResponseData;
+import com.example.crud.ApiResponse;
 import com.example.crud.Service.CrudService;
 import com.example.crud.dto.CrudRequestDto;
 import com.example.crud.dto.CrudResponseDto;
@@ -24,128 +24,103 @@ public class CrudController {
 
     //전체 작곡가 리스트 조회
     @GetMapping("/composers")
-    public ResponseEntity<ResponseData> getComposers() {
-
-        ResponseData responseData = new ResponseData();
+    public ResponseEntity<ApiResponse> getComposers() {
 
         try {
             List<CrudResponseDto> composersList = crudService.getComposers();
 
-            responseData.setCode(200);
-            responseData.setMessage("요청에 성공하였습니다.");
-            responseData.setDataList(composersList);
+            ApiResponse<List<CrudResponseDto>> response = ApiResponse.success(200, "요청에 성공하였습니다.", composersList);
 
-            return new ResponseEntity<>(responseData, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            responseData.setCode(400);
-            responseData.setMessage("잘못된 요청입니다.");
-            responseData.setDataList(null);
+            ApiResponse<Object> response = ApiResponse.failure(400, "요청에 실패하였습니다.");
 
-            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 등록
     @PostMapping("/composers")
-    public ResponseEntity<ResponseData> createComposer(@RequestBody CrudRequestDto requestDto) {
-
-        ResponseData responseData = new ResponseData();
+    public ResponseEntity<ApiResponse> createComposer(@RequestBody CrudRequestDto requestDto) {
 
         try {
             CrudResponseDto createdComposer = crudService.createComposer(requestDto);
 
-            responseData.setCode(200);
-            responseData.setMessage("작곡가 등록에 성공하였습니다.");
-            responseData.setData(createdComposer);
+            ApiResponse<CrudResponseDto> response = ApiResponse.success(200, "작곡가 등록에 성공하였습니다.", createdComposer);
 
-            return new ResponseEntity<>(responseData, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            responseData.setCode(400);
-            responseData.setMessage("잘못된 요청입니다.");
-            responseData.setData(null);
+            ApiResponse<Object> response = ApiResponse.failure(400, "작곡가 등록에 실패하였습니다.");
 
-            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 조회
     @GetMapping("/composers/{composer}")
-    public ResponseEntity<ResponseData> getComposer(@PathVariable String composer) {
+    public ResponseEntity<ApiResponse> getComposer(@PathVariable String composer) {
 
-        ResponseData responseData = new ResponseData();
 
         try {
             List<CrudResponseDto> selectedComposer = crudService.getComposer(composer);
 
-            responseData.setCode(200);
-            responseData.setMessage("작곡가 조회에 성공하였습니다.");
-            responseData.setDataList(selectedComposer);
+            ApiResponse<List<CrudResponseDto>> response = ApiResponse.success(200, "작곡가 조회에 성공하였습니다.", selectedComposer);
 
-            return new ResponseEntity<>(responseData, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            responseData.setCode(400);
-            responseData.setMessage("잘못된 요청입니다.");
-            responseData.setDataList(null);
+            ApiResponse<Object> response = ApiResponse.failure(400, "작곡가 조회에 실패하였습니다.");
 
-            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 수정
     @PutMapping("/composers/{composer}")
-    public ResponseEntity<ResponseData> updateComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) throws Exception {
+    public ResponseEntity<ApiResponse> updateComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) throws Exception {
 
-        ResponseData responseData = new ResponseData();
 
         try {
             CrudResponseDto updatedComposer = crudService.updateComposer(composer, requestDto);
 
-            responseData.setCode(200);
-            responseData.setMessage("작곡가 수정에 성공하였습니다.");
-            responseData.setData(updatedComposer);
+            ApiResponse<CrudResponseDto> response = ApiResponse.success(200, "작곡가 수정에 성공하였습니다.", updatedComposer);
 
-            return new ResponseEntity<>(responseData, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            responseData.setCode(400);
-            responseData.setMessage("알치하지 않는 비밀번호 입니다.");
-            responseData.setData(null);
+            ApiResponse<Object> response = ApiResponse.failure(400, "일치하지 않는 비밀번호입니다.");
 
-            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     //작곡가 삭제
     @DeleteMapping("/composers/{composer}")
-    public ResponseEntity<ResponseData> deleteComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) {
+    public ResponseEntity<ApiResponse> deleteComposer(@PathVariable String composer, @RequestBody CrudRequestDto requestDto) {
 
-        ResponseData responseData = new ResponseData();
 
         try {
             crudService.deleteComposer(composer, requestDto);
 
-            responseData.setCode(200);
-            responseData.setMessage("작곡가 삭제에 성공하였습니다.");
+            ApiResponse<Object> response = ApiResponse.success(200, "작곡가 삭제에 성공하였습니다.", null);
 
-            return new ResponseEntity<>(responseData, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
 
-            responseData.setCode(400);
-            responseData.setMessage("일치하지 않는 비밀번호입니다.");
+            ApiResponse<Object> response = ApiResponse.failure(400, "비밀번호가 일치하지 않습니다.");
 
-            return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
     }
