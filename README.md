@@ -44,31 +44,37 @@
 -DB에 반영되기 전 처음 생성된 엔티티 (비영속)  
 - crud/Repository/CrudRepository
 
-#### + 예외처리 추가  
+#### + 예외처리 추가(24/07/08)
 리턴타입을 ResponseEntity로 바꾸고 try, catch로 예외처리를 해서 상태값을 리턴하도록 했다.  
 비밀번호 대조가 필요한 수정, 삭제에서는 Service에서 Repository를 통해 DB에 저장된 비밀번호와 대조를 해야하기 때문에 서비스에서 Http 요청 메시지에 담긴 비밀번호와 DB의 비밀번호 비교 후 일치하지 않으면 throw Exception으로 발생한 에러를 던져서 컨트롤러에서 잡게 했다.
 
+### + response 정제 함수 추가(24/07/10)
+응답메시지 안에 넣어줄 key 값을 클래스로 만들고, 컨트롤러 메서드에서 만든 클래스를 객체생성 후 setter로 값을 설정해 준 후 변수에 담아 리턴하도록 했다.
+
+### + 중복코드 함수로 정리(24/07/11)
+컨트롤러의 메서드 마다 객체생성 + setter로 값을 설정하는 부분이 반복되어 함수를 요청에 성공했을 때, 실패했을 때 두 개로 생성 후 필요할 때 마다 사용했다.
+
 ### 6. 테스트
 ### - 전체 목록 조회
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/3a4f5cee-4d00-4b4e-8b84-4f6afba95af8)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/a8f5b8a5-d9a9-464e-a00a-bbdee68b7843)
 
 ### -작곡가 생성
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/4eb987a6-63c4-4b3f-86d8-0e12365ece48)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/7e0ed3bf-cd05-4a74-a1cb-3d709202cde4)
 
 ### -작곡가 세부 조회
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/a8f2b9aa-4c33-4b6d-bfbf-63a4d2b71fdb)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/abb08cac-42ba-471f-9392-d8f2a07e479b)
 
 ### -작곡가 수정(비밀번호가 일치하지 않을 경우)
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/3d046084-5809-4174-8643-8c5d1e569ecc)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/a00acbb9-8315-433e-a5e8-8bceb87d3c5f)
 
 ### -작곡가 수정(비밀번호가 일치)
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/8997660e-4c82-40c8-9ac7-210bcca0d0cf)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/edf7c325-15f5-4d7a-82d9-8662f48150a4)
 
 ### -작곡가 삭제(비밀번호가 일치하지 않을 경우)
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/d768a8d5-0287-4c0d-92c6-ba8b737df215)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/24d3d15a-da24-46f3-9194-a77f905cb7e3)
 
 ### -작곡가 삭제(비밀번호가 일치)
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/35ab7700-d72c-4631-84c7-9cf869b197de)
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/1f1082e7-aa7c-4edf-950c-a95a607a5744)
 
 
 
