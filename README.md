@@ -56,6 +56,11 @@
 컨트롤러의 메서드 마다 객체생성 + setter로 값을 설정하는 부분의 중복 코드를 줄이기 위해서 일괄적으로 response를 정제하는 정적 메서드를 만들었다.  
 &rightarrow; 중복코드를 함수로 정리해 코드가 훨씬 깔끔해졌다.
 
+#### + 전역 예외 처리와 에러 커스텀(24/07/13)
+컨트롤러의 모든 메서드에 try, catch 구문이 들어가는게 지저분해 보여서 Enum을 활용해서 Http 상태코드와 메시지를 만들고 RuntimeException을 상속받은 예외클래스를 만들어 적용했다.  
+그 다음 @RestControllerAdvice와 @ExceptionHandler 애노테이션을 사용해서 글로벌 영역인 GlobalExceptionHandler 클래스를 만들어 예외처리를 지정하였다.  
+&rightarrow; 예외처리를 따로 해두니 컨트롤러가 더더욱 깔끔해졌다.
+
 ### 6. 테스트
 ### - 전체 목록 조회
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/a8f5b8a5-d9a9-464e-a00a-bbdee68b7843)
