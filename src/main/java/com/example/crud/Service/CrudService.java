@@ -1,5 +1,7 @@
 package com.example.crud.Service;
 
+import com.example.crud.CustomErrorCode;
+import com.example.crud.CustomException;
 import com.example.crud.Repository.CrudRepository;
 import com.example.crud.dto.CrudRequestDto;
 import com.example.crud.dto.CrudResponseDto;
@@ -52,10 +54,10 @@ public class CrudService {
         List<Composers> foundByComposer = crudRepository.findByComposer(composer);
 
         List<CrudResponseDto> responseDto = foundByComposer.stream().map(CrudResponseDto::toDto).collect(Collectors.toUnmodifiableList());
-
+        //입력한 이름의 작곡가가 없으면
         if(responseDto.isEmpty()) {
-
-            throw new Exception();
+            //커스텀한 오류를 발생시킨다.
+            throw new CustomException(CustomErrorCode.COMPOSER_DOESNT_EXIST);
 
         } else {
 
@@ -75,9 +77,9 @@ public class CrudService {
         //저장된 비밀번호를 꺼낸다.
         String savedPassword = responseDto.get(0).getPassword();
 
-        //입력한 비밀번호와 저장된 비밀번호가 같지 않으면 예외를 발생시킨다.
+        //입력한 비밀번호와 저장된 비밀번호가 같지 않으면 커스텀한 예외를발생시킨다.
         if(!(requestDto.getPassword().equals(savedPassword))) {
-            throw new Exception();
+            throw new CustomException(CustomErrorCode.WRONG_PASSWORD);
         }
 
         Composers composers = crudRepository.findByWriter(responseDto.get(0).getWriter());
@@ -95,9 +97,9 @@ public class CrudService {
         List<Composers> foundByComposer = crudRepository.findByComposer(composer);
         //Entity -> Dto로 변환
         List<CrudResponseDto> responseDto = foundByComposer.stream().map(CrudResponseDto::toDto).collect(Collectors.toUnmodifiableList());
-        //DB에 저장된 비밀번호와 삭제할 때 보낸 비밀번호가 일치하지 않으면 예외를 발생시킨다.
+        //DB에 저장된 비밀번호와 삭제할 때 보낸 비밀번호가 일치하지 않으면 커스텀한 예외를 발생시킨다.
         if (!(requestDto.getPassword().equals(responseDto.get(0).getPassword()))) {
-            throw new Exception();
+            throw new CustomException(CustomErrorCode.WRONG_PASSWORD);
         }
 
         crudRepository.deleteById(responseDto.get(0).getId());

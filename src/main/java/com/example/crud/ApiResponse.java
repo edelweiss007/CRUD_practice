@@ -1,6 +1,5 @@
 package com.example.crud;
 
-import com.example.crud.dto.CrudResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +15,12 @@ public class ApiResponse<T> {
 
     private T data;
 
-    public static <T>ApiResponse<T> success(int code, String message, T data) {
+    public static <U> ApiResponse<U> success(int code, String message, U data) {
 
-        return new ApiResponse<>(code, message, data);
+        return new ApiResponse<U>(code, message, data);
     }
 
-    public static <T>ApiResponse<T> failure(int code, String message) {
+    public static <T> ApiResponse<T> failure(int code, String message) {
 
         return new ApiResponse<>(code, message, null);
     }
