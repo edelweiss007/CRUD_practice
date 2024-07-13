@@ -1,5 +1,8 @@
 ### REST API - CRUD만들기
 
+공부정리  
+https://incongruous-candy-ad0.notion.site/be7aba2c011e41a697abe6d71ad50acd?v=b29b85b5f5bb4dfb92d2fc6371edfbe2
+
 무엇을 주제로?
 제목: 작곡가 이름  
 내용: 클래식 작곡가의 출생지, 대표음악
