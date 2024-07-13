@@ -1,6 +1,5 @@
 package com.example.crud;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +31,11 @@ public class ApiResponse<T> {
         String message = customException.getMessage();
 
       return new ApiResponse<>(code, message, null);
+    }
+
+    public static <T> ApiResponse<T> otherException(int code, String message, T data) {
+
+        return new ApiResponse<>(code, message, null);
     }
 
 }

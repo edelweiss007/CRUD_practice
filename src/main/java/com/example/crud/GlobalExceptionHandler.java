@@ -19,6 +19,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> exceptionHandler(Exception exception) {
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 에러입니다.");
+        ApiResponse<Object> response = ApiResponse.otherException(500, "서버 에러입니다.", null);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
