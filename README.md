@@ -71,11 +71,11 @@ https://incongruous-candy-ad0.notion.site/be7aba2c011e41a697abe6d71ad50acd?v=b29
 ### -작곡가 생성
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/7e0ed3bf-cd05-4a74-a1cb-3d709202cde4)
 
-### -작곡가 세부 조회
-![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/abb08cac-42ba-471f-9392-d8f2a07e479b)
-
 ### -작곡가 세부 조회(작곡가가 존재하지 않을 경우)
 ![image](https://github.com/user-attachments/assets/449bcee6-1d9a-403f-bfa4-a27052a783dd)
+
+### -작곡가 세부 조회
+![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/abb08cac-42ba-471f-9392-d8f2a07e479b)
 
 ### -작곡가 수정(비밀번호가 일치하지 않을 경우)
 ![image](https://github.com/user-attachments/assets/72b7f026-8580-4828-8c91-063dc02a8859)
