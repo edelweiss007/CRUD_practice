@@ -11,9 +11,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<?> customExceptionHandler(CustomException customException) {
 
-        return ResponseEntity.status(customException.getCustomErrorCode().getHttpStatus())
-                .body(customException.getCustomErrorCode().name()); //Enum 객체의 문자열 리턴
+        ApiResponse<Object> response = ApiResponse.failure(customException);
 
+        return ResponseEntity.status(customException.getCode()).body(response);
     }
 
     @ExceptionHandler(Exception.class)

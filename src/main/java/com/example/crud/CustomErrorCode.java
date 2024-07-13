@@ -13,11 +13,11 @@ public enum CustomErrorCode {
     NOT_FOUND(HttpStatus.NOT_FOUND, "지정한 리소스를 찾을 수 없습니다.");
 
     private HttpStatus httpStatus;
-    private String message;
+    private String msg;
 
     //자꾸 @AllArgsConstructor을 쓰니까 생성자가 눈에 안보여서 헛갈린다!! 눈으로 봐야지..
     CustomErrorCode(HttpStatus httpStatus, String message) {
         this.httpStatus = httpStatus;
-        this.message = message;
+        this.msg = message;
     }
 }
