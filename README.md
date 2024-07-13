@@ -1,5 +1,8 @@
 ### REST API - CRUD만들기
 
+공부정리  
+https://incongruous-candy-ad0.notion.site/be7aba2c011e41a697abe6d71ad50acd?v=b29b85b5f5bb4dfb92d2fc6371edfbe2
+
 무엇을 주제로?
 제목: 작곡가 이름  
 내용: 클래식 작곡가의 출생지, 대표음악
@@ -68,20 +71,20 @@
 ### -작곡가 생성
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/7e0ed3bf-cd05-4a74-a1cb-3d709202cde4)
 
+### -작곡가 세부 조회(작곡가가 존재하지 않을 경우)
+![image](https://github.com/user-attachments/assets/449bcee6-1d9a-403f-bfa4-a27052a783dd)
+
 ### -작곡가 세부 조회
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/abb08cac-42ba-471f-9392-d8f2a07e479b)
 
-### -작곡가 세부 조회(작곡가가 존재하지 않을 경우)
-![image](https://github.com/user-attachments/assets/8bfaedad-e40f-4ed8-a72d-ba8d6ddcf403)
-
 ### -작곡가 수정(비밀번호가 일치하지 않을 경우)
-![image](https://github.com/user-attachments/assets/490c05a7-096c-476c-8273-ab9ecb2e1b50)
+![image](https://github.com/user-attachments/assets/72b7f026-8580-4828-8c91-063dc02a8859)
 
 ### -작곡가 수정(비밀번호가 일치)
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/edf7c325-15f5-4d7a-82d9-8662f48150a4)
 
 ### -작곡가 삭제(비밀번호가 일치하지 않을 경우)
-![image](https://github.com/user-attachments/assets/d6703a04-eee3-4c69-bbf3-29ecb8d17b35)
+![image](https://github.com/user-attachments/assets/adbd75a3-6497-4220-b1be-89350403f973)
 
 ### -작곡가 삭제(비밀번호가 일치)
 ![image](https://github.com/edelweiss007/CRUD_practice/assets/112394191/1f1082e7-aa7c-4edf-950c-a95a607a5744)
